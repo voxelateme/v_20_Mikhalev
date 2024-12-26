@@ -1,5 +1,6 @@
 package com.example.mikhalev_pr22102_20
 
+import android.content.ContentValues
 import androidx.compose.foundation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
@@ -31,6 +33,10 @@ fun LoginScreen(navController: NavController) {
 
     var loginValue by remember { mutableStateOf("") }
     var passwordValue by remember { mutableStateOf("") }
+
+    val context = LocalContext.current
+    val dbHelper = Database(context, "DATABASE1")
+
 
     Box(
         modifier = Modifier
@@ -80,6 +86,15 @@ fun LoginScreen(navController: NavController) {
             Button(
                 onClick = {
                     if (!passwordValue.isBlank() && !loginValue.isBlank()) {
+                        val db = dbHelper.writableDatabase
+
+                        val contentValues = ContentValues().apply {
+                            put(Database.COLUMN_LOGIN, loginValue)
+                            put(Database.COLUMN_PASS, passwordValue)
+                        }
+
+                        db.insert(Database.TABLE, null, contentValues)
+
                         navController.navigate("personal_area")
                     }
                 },
