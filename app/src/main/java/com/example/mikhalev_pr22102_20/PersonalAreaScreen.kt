@@ -41,6 +41,15 @@ fun PersonalAreaScreen(navController: NavController) {
     val PrimaryGreen = Color(0xFF8DD554)
 
     val context = LocalContext.current
+    val dbHelper = Database(context, "DATABASE1")
+
+    var firstLogin: String? = null
+
+    val cursor = dbHelper.readableDatabase.rawQuery("SELECT login FROM users LIMIT 1", null)
+    if (cursor.moveToFirst()) {
+        firstLogin = cursor.getString(cursor.getColumnIndexOrThrow("login"))
+    }
+    cursor.close()
 
     Box(
         modifier = Modifier
@@ -99,7 +108,7 @@ fun PersonalAreaScreen(navController: NavController) {
                         append("Привет, ")
                     }
                     withStyle(style = SpanStyle(color = PrimaryGreen)) {
-                        append("User!")
+                        append(firstLogin)
                     }
                 },
                 fontSize = 24.sp,

@@ -2,13 +2,12 @@ package com.example.mikhalev_pr22102_20
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -58,7 +57,6 @@ fun NoticeScreen(navController: NavController) {
                 fontWeight = FontWeight.Medium,
                 color = DarkText
             )
-
             Spacer(modifier = Modifier.size(60.dp))
         }
 
@@ -69,7 +67,6 @@ fun NoticeScreen(navController: NavController) {
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             Spacer(modifier = Modifier.height(40.dp))
 
             Box(
@@ -121,7 +118,6 @@ fun NoticeScreen(navController: NavController) {
                     fontSize = 16.sp
                 )
             }
-
             Spacer(modifier = Modifier.height(100.dp))
 
             Column(
@@ -143,7 +139,12 @@ fun NoticeScreen(navController: NavController) {
                     )
                     Checkbox(
                         checked = checked1,
-                        onCheckedChange = { checked1 = it }
+                        onCheckedChange = { checked1 = it },
+                        colors = CheckboxDefaults.colors(
+                            checkedColor = PrimaryGreen,
+                            uncheckedColor = LightTextGray,
+                            checkmarkColor = White
+                        )
                     )
                 }
 
@@ -160,7 +161,12 @@ fun NoticeScreen(navController: NavController) {
                     )
                     Checkbox(
                         checked = checked2,
-                        onCheckedChange = { checked2 = it }
+                        onCheckedChange = { checked2 = it },
+                        colors = CheckboxDefaults.colors(
+                            checkedColor = PrimaryGreen,
+                            uncheckedColor = LightTextGray,
+                            checkmarkColor = White
+                        )
                     )
                 }
 
@@ -177,7 +183,12 @@ fun NoticeScreen(navController: NavController) {
                     )
                     Checkbox(
                         checked = checked3,
-                        onCheckedChange = { checked3 = it }
+                        onCheckedChange = { checked3 = it },
+                        colors = CheckboxDefaults.colors(
+                            checkedColor = PrimaryGreen,
+                            uncheckedColor = LightTextGray,
+                            checkmarkColor = White
+                        )
                     )
                 }
             }
