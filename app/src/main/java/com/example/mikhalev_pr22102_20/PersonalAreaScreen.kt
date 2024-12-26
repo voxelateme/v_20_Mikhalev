@@ -45,8 +45,8 @@ fun PersonalAreaScreen(navController: NavController) {
 
     var firstLogin: String? = null
 
-    val cursor = dbHelper.readableDatabase.rawQuery("SELECT login FROM users LIMIT 1", null)
-    if (cursor.moveToFirst()) {
+    val cursor = dbHelper.readableDatabase.rawQuery("SELECT login FROM users", null)
+    if (cursor.moveToLast()) {
         firstLogin = cursor.getString(cursor.getColumnIndexOrThrow("login"))
     }
     cursor.close()
