@@ -1,7 +1,6 @@
 package com.example.mikhalev_pr22102_20
 
 import android.content.Intent
-import android.graphics.Paint.Align
 import android.provider.MediaStore
 import androidx.compose.foundation.*
 import androidx.compose.foundation.background
@@ -22,7 +21,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -30,7 +31,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-
 
 @Composable
 fun PersonalAreaScreen(navController: NavController) {
@@ -83,6 +83,7 @@ fun PersonalAreaScreen(navController: NavController) {
                     }
             )
         }
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -91,6 +92,7 @@ fun PersonalAreaScreen(navController: NavController) {
             horizontalAlignment = Alignment.Start
         ) {
             Spacer(modifier = Modifier.height(20.dp))
+
             Text(
                 text = buildAnnotatedString {
                     withStyle(style = SpanStyle(color = Color.Black)) {
@@ -104,7 +106,9 @@ fun PersonalAreaScreen(navController: NavController) {
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.padding(horizontal = 20.dp)
             )
+
             Spacer(modifier = Modifier.height(20.dp))
+
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -149,21 +153,32 @@ fun PersonalAreaScreen(navController: NavController) {
                     }
                 }
             }
+
             Spacer(modifier = Modifier.height(20.dp))
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(160.dp)
                     .padding(horizontal = 20.dp)
                     .clip(RoundedCornerShape(16.dp))
-                    .background(Color.LightGray)
             ) {
+                Image(
+                    painter = painterResource(id = R.drawable.news),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
+                )
+
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(
                             brush = Brush.verticalGradient(
-                                colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.75f))
+                                colors = listOf(
+                                    Color.Transparent,
+                                    Color.Black.copy(alpha = 0.75f)
+                                )
                             )
                         )
                         .padding(24.dp),
@@ -182,8 +197,10 @@ fun PersonalAreaScreen(navController: NavController) {
                     )
                 }
             }
+
             Spacer(modifier = Modifier.height(80.dp))
         }
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()
