@@ -10,8 +10,8 @@ fun AppNavigator(){
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "login") {
-        composable("login") { /**/ }
-        composable("personal_area") { /**/ }
-        composable("notice") { /**/) }
+        composable("login") { LoginScreen(navController) }
+        composable("personal_area") { PersonalAreaScreen(navController) }
+        composable("notice") { /**/ }
     }
 }
